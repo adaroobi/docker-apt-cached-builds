@@ -1,0 +1,18 @@
+version: '2'
+services:
+  testCacher:
+    build:
+      context: ./cache
+      dockerfile: Dockerfile
+      args:
+        ENABLE_CACHE: 1
+        CACHE_HOST: 172.17.0.4
+        CACHE_PORT: 3142
+    networks:
+          - bridge
+    image: test/caching
+#    external_links:
+#      - apt-cacher-ng
+networks:
+  bridge:
+    external: true
